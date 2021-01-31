@@ -1,0 +1,253 @@
+﻿<Window x:Class="INTERGRAPH.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:INTERGRAPH"
+        mc:Ignorable="d"
+        Title="Club de Tennis Léonard de Vinci" Height="450" Width="800">
+    <Grid>
+        <!-- <Image Source="https://www.forbes.fr/wp-content/uploads/2017/06/courts_tb-740x370.jpg" Opacity="0.3" Margin="0,12,-0.4,-12" />-->
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Margin="-1,1,1.6,-1">
+            <TabControl.Background>
+                <ImageBrush ImageSource="Image/image.jpg"/>
+            </TabControl.Background>
+
+            <TabItem x:Name="Menu" Header="Menu">
+
+                <Label Content="BIENVENUE AU CLUB DE TENNIS DU POLE LEONARD DE VINCI" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="127,0,95.2,112" Height="52" Width="565" FontSize="20" FontFamily="Segoe UI Symbol" OpacityMask="White" Foreground="White" />
+            </TabItem>
+
+            <TabItem x:Name="Inscription" Header="Inscription">
+                <Grid x:Name="Grid_Inscription">
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Margin="19,9,0,0" Content="Nom" Foreground="White" />
+                    <TextBox x:Name="Nom" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,36,0,0" BorderBrush="Black" Width="180" Height="25"/>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Margin="19,66,0,0" Content="Prenom" Foreground="White" />
+                    <TextBox x:Name="Prenom" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,93,0,0" BorderBrush="Black" Width="180" Height="25"/>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="27" Margin="10,123,0,0" Content="Adresse" Foreground="White" />
+                    <TextBox x:Name="Adresse" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,145,0,0" BorderBrush="Black" Width="180" Height="25"/>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="27" Margin="10,175,0,0" Content="Code Postal" Foreground="White" />
+                    <TextBox x:Name="Code_Postal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,206,0,0" BorderBrush="Black" Width="180" Height="25"/>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="27" Margin="10,231,0,0" Content="N° Telephone" Foreground="White" />
+                    <TextBox x:Name="tel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,264,0,0" BorderBrush="Black" Width="180" Height="25"/>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="53" Height="27" Margin="57,0,0,64" Content="Sexe" HorizontalContentAlignment="Right" Foreground="White" />
+                    <Grid>
+                        <RadioButton Content="Homme" x:Name="H" HorizontalAlignment="Left" Margin="10,326,0,44" Foreground="White"/>
+                        <RadioButton Content="Femme" x:Name="F" HorizontalAlignment="Left" Margin="108,328,0,24" Width="82" Foreground="White"/>
+                    </Grid>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="27" Margin="304,10,0,0" Content="Date de Naissance" Foreground="White" />
+                    <DatePicker HorizontalAlignment="Left" Margin="286,42,0,0" VerticalAlignment="Top" x:Name="date_naiss"/>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="27" Margin="323,91,0,0" Content="Pratique" Foreground="White" />
+                    <Grid>
+                        <RadioButton Content="Loisir" x:Name="Loisir" HorizontalAlignment="Left" Margin="286,123,0,247" Checked="Loisir_Click" Foreground="White"/>
+                        <RadioButton Content="Compétition" x:Name="Competition" HorizontalAlignment="Left" Margin="353,123,0,229" Width="97" Checked="Competition_Click" Foreground="White"/>
+                    </Grid>
+                    <Button x:Name="Valider_inscription" Content="Valider" HorizontalAlignment="Left" Margin="304,176,0,0" VerticalAlignment="Top" Width="108" Height="27" Click="Ajout_Membre"/>
+                    <Label x:Name="affichage_niveau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Height="27" Margin="475,117,0,0" Content="Classement" Visibility="Hidden" Foreground="White"/>
+                    <ComboBox x:Name="choix_niveau" HorizontalAlignment="Left" Margin="548,122,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+                    <Label x:Name="Champs_requis" Content="TOUS LES CHAMPS SONT REQUIS **" HorizontalAlignment="Left" Margin="258,276,0,0" VerticalAlignment="Top" Width="290" Height="45" FontWeight="Medium" Foreground="White" FontSize="16" Visibility="Hidden" />
+                    <Label x:Name ="membre_existe" Content="CE MEMBRE EXISTE DEJA, AJOUT IMPOSSIBLE !!!" Margin="496,246,10,87" Foreground="White" Visibility="Hidden"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Administration" Header="Espace Administratif">
+                <Grid Margin="10,0,6.2,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Visibility="Visible">
+                      
+                        <PasswordBox Height="28" Width="208" VerticalAlignment="Top" Margin="284,190,258,0" BorderBrush="Blue" BorderThickness="2" x:Name="mot_de_passe"/>
+                        <Label x:Name="affich_mdp" Content="SAISIR LE MOT DE PASSE D'ACCES ADMINISTRATIF" Foreground =" White" HorizontalAlignment="Left" Margin="244,138,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="admin" Width="100" Margin="345,290,305,64" Content="ENTRER" Click="acces_admin" />
+                        <Label x:Name="mot_pass_incorrect" HorizontalAlignment="Left" Margin="325,239,0,0" VerticalAlignment="Top" Width="140" Content="Mot de passe incorrect" Foreground="Red" Height="46" Visibility="Hidden"/>
+                    </Grid>
+                    <TabControl x:Name="action_admin" SelectionChanged="TabControl_SelectionChanged" Visibility="Hidden" Margin="0,-2,0.4,2">
+                        
+                        <TabItem Header="Ajouter Cours au planning ">
+                            <Grid Width="100" Height="35" x:Name="cours_valide" Margin="331,0,313,0">
+                                <Label Content="Date des cours à suivre :" Margin="-305,-136,215,135" />
+                                <Grid x:Name="cours_prevu">
+                                    <Button Content="Afficher" Margin="-124,-134,133,147" Click="afficher_cours_planning"/>
+                                    <TextBox x:Name="cours_planning" Margin="-305, -95, 152, -155"/>
+                                </Grid>
+                                <DatePicker x:Name="date_cours" Margin="92,-119,-244,119"/>
+                                <Label Content="Ajouter Cours :" Margin="163,-154,-163,154"/>
+                                <ComboBox x:Name="entraineur_associe" Margin="117,-61,-225,68" RenderTransformOrigin="0.5,0.5"/>
+                                <Label Content="Classement :" Margin="0,11,23,-11" />
+                                <ComboBox x:Name="niveau_requis" Margin="117,18,-225,-11" RenderTransformOrigin="0.5,0.5" />
+                                <Button x:Name="valider_cours" Margin="163,92,-163,-91" Content="Ajouter" Click="ajout_cours"/>
+                                <Label Content="Entraineur :" Margin="-12,-61,35,61" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Competition">
+                            <Grid>
+                                <Label Content="Liste des Compétitions :" Margin="39,15,561,311" />
+                                <TextBox x:Name="liste_compete" Margin="39,71,394,10"/>
+                                <Button Margin="228,15,407,313"  Content="Afficher" Click="aff_comp"/>
+                                <Label Content="Ajouter une Competition :" Margin="516,10,70,316"/>
+                                <Grid>
+                                    <Label Content="Intitulé  :"  Margin="387,172,287,157"/>
+                                    <TextBox x:Name="intit_comp" Margin="477,173,10,157"/>
+                                    <DatePicker x:Name="date_comp_debut" Margin="516,118,69,211"/>
+                                    <Label Content="Date de début :"  Margin="387,54,260,276"/>
+                                    <DatePicker x:Name="date_comp_fin" Margin="516,54,69,276"/>
+                                    <Label Content="Date de fin :"  Margin="406,118,260,205"/>
+                                    <RadioButton Content="Simple" Margin="501,211,155,122" x:Name="indiv"/>
+                                    <RadioButton Content="Equipe" Margin="607,211,49,122" x:Name="eq"/>
+                                    <Label Content="Encadrants :" Margin="375,241,287,91" RenderTransformOrigin="0.476,0.194"/>
+                                    <ListBox x:Name="encadrants" Margin="462,241,12,91" />
+                                    <ComboBox x:Name="level_comp" RenderTransformOrigin="0.45,2.5" Margin="477,277,30,59" />
+                                    <Label Content="Niveau :" Margin="387,277,295,46" />
+                                </Grid>
+                                <Button x:Name="valider_comp" Margin="544,314,90,10" Content="Ajouter" Click="ajout_comp"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Tournoi des Familles">
+                            <Grid Width="100" Height="35" x:Name="tournoi_valide">
+                                <Label Content="Date des tournois à venir :" Margin="-305,-136,218,135" />
+                                <Grid x:Name="event_prevu">
+                                    <Button Content="Afficher" Margin="-132,-134,141,147.2" Click="afficher_event_planning"/>
+                                </Grid>
+                                <Label Content="Ajouter un Tournoi :" Margin="163,-154,-174,154"/>
+                                <Label Content="Intitulé  :"  Margin="-4,-108,-7,108"/>
+                                <TextBox x:Name="intitule" Margin="92,-114,-244,112"/>
+                                <Label Content="Lieu  :"  Margin="-4,-66,-7,66"/>
+                                <TextBox x:Name="lieu" Margin="92,-70,-244,70"/>
+                                <DatePicker x:Name="date_event_debut" Margin="92,-23,-244,23"/>
+                                <Label Content="Date de début :"  Margin="-9,-22,-2,22"/>
+                                <DatePicker x:Name="date_event_fin" Margin="92,23,-244,-23"/>
+                                <Label Content="Date de fin :"  Margin="-9,24,-2,-24"/>
+                                <Label Content="Entraineur :" Margin="-27,86,50,-86" />
+                                <ListBox Width="300" Margin="65,72,-265,-93" x:Name="entraineurs_event_associe" SelectionMode="Multiple"  />
+                                <Button x:Name="valider_event" Margin="174,142,-174,-141" Content="Ajouter" Click="ajout_event"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Stage">
+                            <Grid Width="100" Height="35" x:Name="stage_valide">
+                                <Label Content="Date des futurs stages :" Margin="-305,-136,215,135" />
+                                <Grid x:Name="stage_prevu">
+                                    <Button Content="Afficher" Margin="-124,-134,133,147" Click="afficher_stage_planning"/>
+                                </Grid>
+                                <Label Content="Date début :" Margin="0,-119,13,119"/>
+                                <DatePicker x:Name="date_stage_debut" Margin="92,-119,-244,119"/>
+                                <Label Content="Date fin :" Margin="0,-64,27,64"/>
+                                <DatePicker x:Name="date_stage_fin" Margin="92,-63,-244,63"/>
+                                <Label Content="Ajouter Stage :" Margin="163,-154,-163,154"/>
+                                <Label Content="Entraineurs :" Margin="-27,10,50,-10" />
+                                <ListBox  Width="300" Margin="69,0,-269,-21" x:Name="entraineur_stage_associe" SelectionMode="Multiple"  />
+                                <Label Content="Niveau :" Margin="0,84,23,-84" />
+                                <ComboBox x:Name="niveau_requis_stage" Margin="119,87,-227,-80" RenderTransformOrigin="0.5,0.5" />
+                                <Label Content="Coût : 50 euros" Margin="0,124,0,-124" />
+                                <Button x:Name="valider_cours_stage" Margin="174,151,-174,-150" Content="Ajouter" Click="ajout_stage"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Membres">
+                            <Grid x:Name="grid_affichage">
+                                <ComboBox  Margin="46,91,481,240" x:Name="option_affichage" />
+                                <TextBox x:Name="option_affichage2" Margin="366, 44, 19, 22" Width="477" Height="307"/>
+                                <Button Content="Valider" Click="Affichage_multiple" Width="140" Margin="85,194,519,139" />
+                                <Label Content="Liste : " Margin="318,16,368,312" RenderTransformOrigin="0.5,0.5" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Former Equipe">
+                            <Grid x:Name="def_capitaine">
+                                <Label Content="Définition d'un capitaine d'équipe:" Margin="10,8,483,316" />
+                                <Label Content="Niveau :" Margin="10,62,679.8,266" />
+                                <ComboBox x:Name="niveau_equipe" Margin="93,62,483,266" RenderTransformOrigin="0.5,0.5" />
+                                <Label Content="Capitaine :" Margin="10,114,666.8,214" />
+                                <ComboBox x:Name="liste_membre2" Margin="93,112,483,214"/>
+                                <Button x:Name="valider_capitaine" Margin="131,179,525,153" Content="Valider" Click="ajout_capitaine"/>
+                                <Label Content="Compétition :" Margin="362,62,276,266" />
+                                <ComboBox x:Name="liste_competition" Margin="390,130,38,198" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="Stats"  Header="Statistiques du club" >
+                            <Grid Margin="-9,0,0,1" x:Name ="grid_stat">
+                                <ComboBox x:Name="stat_aff" HorizontalAlignment="Left" Margin="46,31,0,0" VerticalAlignment="Top" Width="233" Height="34"  />
+                                <Button Content="Valider" Margin="113,94,538,236" Click="choix_stat_affich" Visibility="Visible" x:Name="val"/>
+                                <Button x:Name="stat_button" Content="Afficher" Click="stat_membre" Margin="123,279,538,55" Visibility="Hidden"/>
+                                <Label Content="Selectionner un membre :" Margin="80,147,504,177" x:Name="select_membre" Visibility="Hidden"/>
+                                <ComboBox x:Name="liste_membre_compete" HorizontalAlignment="Left" Margin="58,190,0,0" VerticalAlignment="Top" Width="194" Height="33" Visibility="Hidden" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Cotisation">
+                            <Grid>
+                                <Label Content="Modifier l'état de cotisation de membres qui ont réglé récemment :" HorizontalAlignment="Left" Margin="210,76,0,0" VerticalAlignment="Top" Height="48" Width="388"/>
+                                <ListBox SelectionMode="Multiple" HorizontalAlignment="Left" Height="111" Margin="243,129,0,0" VerticalAlignment="Top" Width="300" Name="membre_cotis"/>
+                                <Button Content="Régler" Click="regler_cotis" Margin="340,286,311,43"/>
+                            </Grid>
+                            
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Members"  Header="Espace Membre">
+                <Grid Width="750">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="227*"/>
+                        <ColumnDefinition Width="523*"/>
+                        <ColumnDefinition Width="0*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl x:Name="action_membre" SelectionChanged="TabControl_SelectionChanged" Visibility="Visible" Grid.ColumnSpan="2" Margin="0,4,0.4,6">
+                        <TabItem Header="Statut ">
+                            <Grid x:Name="Grid_Membre" >
+                                <Label Content="Nom" HorizontalAlignment="Left" Margin="44,29,0,0" VerticalAlignment="Top" Width="45"/>
+                                <TextBox x:Name="membre_nom" HorizontalAlignment="Left" Height="23" Margin="44,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="Prenom" HorizontalAlignment="Left" Margin="44,88,0,0" VerticalAlignment="Top" Width="75"/>
+                                <TextBox x:Name="membre_prenom" HorizontalAlignment="Left" Height="23" Margin="44,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="N° Licence" HorizontalAlignment="Left" Margin="44,147,0,0" VerticalAlignment="Top" Width="120"/>
+                                <TextBox x:Name="membre_licence" HorizontalAlignment="Left" Height="23" Margin="44,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Button x:Name="valider_membre" Margin="69,0,601,98" Content="Valider" FontSize="14" VerticalAlignment="Bottom" Click="afficher_infos_membre" Height="27" Visibility="Visible" />
+                                <Label x:Name="cls1" HorizontalAlignment = "Center" Margin="353,60,305.8,259.4" Content = "Classement :  " Visibility="Hidden" Width="86"/>
+                                <Label x:Name="cls" HorizontalAlignment = "Center" Margin="425,60,233.8,259.4" Content = "" Visibility="Hidden" Width="86"/>
+                                <Label x:Name="competitions1" HorizontalAlignment="Center" Margin ="288,119,244,199" Content="Nombre competition Restant à faire :  " Visibility="Hidden"/>
+                                <Label x:Name="competitions" HorizontalAlignment="Center" Margin ="491,119,224.8,199.4" Content="" Visibility="Hidden" Width="29"/>
+                                <Label x:Name="cotis" HorizontalAlignment="Center" Margin="44, 173, 0, 0" Content="Cotisation payée :  " Visibility="Hidden"/>
+                                <Label x:Name="cotiscompet" HorizontalAlignment="Center" Margin="438,173,208.8,0.4" Content="" Visibility="Hidden" Width="98"/>
+                                <Label x:Name="cours" HorizontalAlignment="Center" Margin="338,213,306,107" Content="Liste des cours :  " Visibility="Hidden"/>
+                                <TextBox x:Name="cours_reserve" Margin="356,251,10,10" Visibility="Hidden"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Former Equipe">
+                            <Grid x:Name="Grid_Capitaine" Visibility="Visible" >
+                                <Label Content="Nom Capitaine" HorizontalAlignment="Left" Margin="44,29,0,0" VerticalAlignment="Top" Width="120" />
+                                <TextBox x:Name="nom_cap" HorizontalAlignment="Left" Height="23" Margin="44,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="Prenom Capitaine" HorizontalAlignment="Left" Margin="44,88,0,0" VerticalAlignment="Top" Width="120"/>
+                                <TextBox x:Name="prenom_cap" HorizontalAlignment="Left" Height="23" Margin="44,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="N° Licence Capitaine" HorizontalAlignment="Left" Margin="44,152,0,0" VerticalAlignment="Top" Width="120"/>
+                                <TextBox x:Name="licence_cap" HorizontalAlignment="Left" Height="23" Margin="44,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Button x:Name="cap_ajout" Margin="68,0,602,84" Content="Valider" FontSize="14" VerticalAlignment="Bottom" Click="creer_equipe" Height="26" />
+                                <Grid x:Name="ajout_membre" Margin="271,0,20,0" Visibility="Hidden">
+                                    <Label Content="Membre 1 :" Margin="10,10,350,299" />
+                                    <ComboBox x:Name="membre_equipe1" Margin="174,10,66,311" Height="32"/>
+                                    <Label Content="Membre 2 :" Margin="10,86,350,231" />
+                                    <ComboBox x:Name="membre_equipe2" Margin="174,86,66,235"/>
+                                    <Label Content="Membre 3 :" Margin="10,160,350,162" />
+                                    <ComboBox x:Name="membre_equipe3" Margin="174,160,66,161" Height="32"/>
+                                    <Label Content="Membre 4 :" Margin="10,232,350,90" />
+                                    <ComboBox x:Name="membre_equipe4" Margin="174,231,66,90" Height="32"/>
+                                    <Button Click="ajout" Margin="235,306,115,10" Content="Ajouter" />
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Reserver Cours" >
+                            <Grid x:Name="Grid_cours" >
+                                <Label Content="Nom" HorizontalAlignment="Left" Margin="44,29,0,0" VerticalAlignment="Top" Width="45"/>
+                                <TextBox x:Name="cours_nom" HorizontalAlignment="Left" Height="23" Margin="44,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="Prenom" HorizontalAlignment="Left" Margin="44,88,0,0" VerticalAlignment="Top" Width="75"/>
+                                <TextBox x:Name="cours_prenom" HorizontalAlignment="Left" Height="23" Margin="44,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="N° Licence" HorizontalAlignment="Left" Margin="44,147,0,0" VerticalAlignment="Top" Width="120"/>
+                                <TextBox x:Name="cours_licence" HorizontalAlignment="Left" Height="23" Margin="44,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Button x:Name="valider" Margin="69,0,601,98" Content="Valider" FontSize="14" VerticalAlignment="Bottom" Click="reserver_cours" Height="27" Visibility="Visible" />
+                                <Label Content="Choix du cours :" Margin="511,29,121,283"/>
+                                <ComboBox x:Name="liste_cours_dispo" Margin="430,88,64,227" />
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
